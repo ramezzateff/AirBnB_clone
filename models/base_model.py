@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+''' This script is the base model'''
 import uuid
 import datetime
 
@@ -38,15 +38,19 @@ class BaseModel:
 
     def __str__(self):
         '''Return the class name & id & dict of attribute'''
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+
+        return "[{}] ({}) {}"./
+    format(type(self).__name__, self.id, self.__dict__)
 
     def save(self):
         '''Updates the public instance attribute updated
         _at with the current datetime'''
+
         self.updated_at = datetime.datetime.utcnow()
 
     def to_dict(self):
         '''Returns a dictionary containing all keys/values of __dict__'''
+
         data_Rep = self.__dict__.copy()
         data_Rep['__class__'] = self.__class__.__name__
         data_Rep['created_at'] = data_Rep['created_at'].isoformat()
