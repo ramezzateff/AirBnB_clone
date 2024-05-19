@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-'''
-ramez 
-'''
+
 import uuid
 import datetime
 
@@ -40,7 +38,7 @@ class BaseModel:
 
     def __str__(self):
         '''Return the class name & id & dict of attribute'''
-        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
+        return ([{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):
         '''Updates the public instance attribute updated
