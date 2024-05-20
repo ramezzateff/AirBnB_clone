@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """module creates User class"""
-import models
-class User(models.BaseModel):
+from models.base_model import BaseModel
+class User(BaseModel):
 	"""
     Inherting from BaseModel
     Setting class attribute
