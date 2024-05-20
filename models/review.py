@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 '''That module created Review class '''
-from models.base_model import base_model
+import models
 
 
-class Review(BaseModel):
+class Review(models.BaseModel):
     """Class for managing reeivew objects"""
 
     place_id = ''

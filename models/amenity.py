@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 '''That module created Amenity class '''
-from models.base_model import BaseModel
+import models
 
-
-class Amenity(BaseModel):
+class Amenity(models.BaseModel):
     '''Class for managing amenity objects'''
     name = ''
