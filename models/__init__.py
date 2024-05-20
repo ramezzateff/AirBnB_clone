@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""Initializes the package"""
-import models
+''' create unique FileStorage'''
 from models.engine.file_storage import FileStorage
 from models.engine import file_storage
 from models.base_model import BaseModel
