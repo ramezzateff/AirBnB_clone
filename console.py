@@ -18,15 +18,15 @@ class HBNBCommand(cmd.Cmd):
         'empty lin + != anything'
         return ''
 
-    def do_create(self, line):
+    def do_create(self, arg):
         """Creates an instance.
         """
-        if line == "" or line is None:
+        if arg == "" or arg is None:
             print("** class name missing **")
-        elif line not in storage.classes():
+        elif arg not in storage.classes():
             print("** class doesn't exist **")
         else:
-            b = storage.classes()[line]()
+            b = storage.classes()[arg]()
             b.save()
             print(b.id)
             print(b)
