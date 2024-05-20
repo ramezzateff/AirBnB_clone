@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 'Module for the entry  interpreter'
 import cmd
+from models.base_model import BaseModel
 import models
+from models import storage
 class HBNBCommand(cmd.Cmd):
     'its my interpreter'
     prompt = '(hbnb)'
@@ -15,18 +17,19 @@ class HBNBCommand(cmd.Cmd):
     def emptylines(self):
         'empty lin + != anything'
         return ''
-    def do_create(self, arg):
-        'creat new instance, save Json and print id'
-        if arg == '' or arg == None:
+
+    def do_create(self, line):
+        """Creates an instance.
+        """
+        if line == "" or line is None:
             print("** class name missing **")
-        # elif type(arg).__name__ != BaseModel:
-        #     print("** class doesn't exist **")
+        elif line not in storage.classes():
+            print("** class doesn't exist **")
         else:
-            new_instannce = models.storage()
-            new_instannce.save()
-            print(new_instannce.id)
-
-
+            b = storage.classes()[line]()
+            b.save()
+            print(b.id)
+            print(b)
 
 
 

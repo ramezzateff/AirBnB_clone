@@ -33,3 +33,21 @@ class FileStorage:
             obj_dict = json.load(f)
             from models.base_model import BaseModel
             FileStorage.__objects = {k: BaseModel(**v) for k, v in obj_dict.items()}
+    def classes(self):
+        '''Returns a dictionary of valid classes and their references'''
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
+        classes = {"BaseModel": BaseModel,
+                   "User": User,
+                   "State": State,
+                   "City": City,
+                   "Amenity": Amenity,
+                   "Place": Place,
+                   "Review": Review}
+        return classes
