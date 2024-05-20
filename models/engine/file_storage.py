@@ -2,6 +2,7 @@
 '''Module for FileStorageclass.'''
 import json
 import os
+import models
 
 class FileStorage:
     '''Class that stores and retrieves data'''
@@ -32,4 +33,3 @@ class FileStorage:
             obj_dict = json.load(f)
             from models.base_model import BaseModel
             FileStorage.__objects = {k: BaseModel(**v) for k, v in obj_dict.items()}
-
