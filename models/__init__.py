@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 ''' create unique FileStorage'''
+import models
 from models.engine.file_storage import FileStorage
 from models.engine import file_storage
 from models.base_model import BaseModel
