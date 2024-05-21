@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """BaseModel defines attributes and methods for all"""
+import models
 import uuid
 from datetime import datetime
 from models import storage
