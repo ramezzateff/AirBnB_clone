@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Module with State class"""
-import models
-class State(models.BaseModel):
+from models.base_model import BaseModel
+class State(BaseModel):
 	"""Class for managing state objects"""
 	name = ""

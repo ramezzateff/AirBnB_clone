@@ -13,6 +13,7 @@ class HBNBCommand(cmd.Cmd):
     
     def do_quit(self, arg):
         """Quit command to exit the program"""
+        print("")
         return True
 
     def do_EOF(self, arg):
@@ -40,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         if arg is None or arg == "":
             print("** class name missing **")
         else:
-            word = arg.split(' ')
+            word = arg.split(" ")
             if word[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(word) < 2:
@@ -58,16 +59,21 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Prints all string representation of all instances based or not on the class name"""
         """Split the argument into word"""
-        word = arg.split(" ")
         all_objects = storage.all().items()
-        if arg != "" and word[0] in storage.classes():
-            inst_list = [str(obj) for key, obj in storage.all().items() if type(obj).__name__ == word[0]]
+        if arg != "":
+            word = arg.split(" ")
+
+            if word[0] in storage.classes():
+                inst_list = [str(obj) for key, obj in all_objects if type(obj).__name__ == word[0]]
+            else:
+                """Create a list of string representations of all instances"""
+                print("** class doesn't exist **")
+                inst_list = [str(obj) for key, obj in all_objects]
         else:
-            """Create a list of string representations of all instances"""
-            print("** class doesn't exist **")
             inst_list = [str(obj) for key, obj in all_objects]
 
         print(inst_list)
+
 
     def update_dict(self, classname, uid, s_dict):
         """Helper update"""
@@ -151,6 +157,24 @@ class HBNBCommand(cmd.Cmd):
         else:
             cou = [key for key in storage.all() if key.startswith(word[0] + ".")]
             print(len(cou))
+
+    def do_destroy(self, arg):
+        """Deletes"""
+        if arg == "" or arg is None:
+            print("** class name missing **")
+        else:
+            word = arg.split(" ")
+            if word[0] not in storage.classes():
+                print("** class doesn't exist **")
+            elif len(word) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(word[0], word[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    del storage.all()[key]
+                    storage.save()
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

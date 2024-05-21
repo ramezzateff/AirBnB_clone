@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """Module with review class"""
-import models
-
-class Review(models.BaseModel):
+from models.base_model import BaseModel
+class Review(BaseModel):
 	"""خاص بالمراجعه"""
 	place_id = ""
 	user_id = ""
