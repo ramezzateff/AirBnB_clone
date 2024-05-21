@@ -37,17 +37,18 @@ class HBNBCommand(cmd.Cmd):
         """reper instance"""
         if arg is None or arg == "":
             print("** class name missing **")
-        word = arg.split(' ')
-        if word[0] not in storage.classes():
-            print("** class doesn't exist **")
-        elif len(word) < 2:
-            print("** instance id missing **")
         else:
-            key = f"{word[0]}.{word[1]}"
-            if key not in storage.all():
-                print("** no instance found **")
+            word = arg.split(' ')
+            if word[0] not in storage.classes():
+                print("** class doesn't exist **")
+            elif len(word) < 2:
+                print("** instance id missing **")
             else:
-                print(storage.all()[key])
+                key = f"{word[0]}.{word[1]}"
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    print(storage.all()[key])
     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id (save the change into the JSON file)"""
         if arg is None or arg == "":
@@ -80,6 +81,28 @@ class HBNBCommand(cmd.Cmd):
 
         print(inst_list)
 
+    def update_dict(self, classname, uid, s_dict):
+        """Helper update"""
+        s = s_dict.replace("'", '"')
+        d = json.loads(s)
+        if not classname:
+            print("** class name missing **")
+        elif classname not in storage.classes():
+            print("** class doesn't exist **")
+        elif uid is None:
+            print("** instance id missing **")
+        else:
+            key = "{}.{}".format(classname, uid)
+            if key not in storage.all():
+                print("** no instance found **")
+            else:
+                attributes = storage.attributes()[classname]
+                for attribute, value in d.items():
+                    if attribute in attributes:
+                        value = attributes[attribute](value)
+                    setattr(storage.all()[key], attribute, value)
+                storage.all()[key].save()
+                
     def do_update(self, arg):
         """
         Updates an instance based on the class name and id
@@ -117,7 +140,7 @@ class HBNBCommand(cmd.Cmd):
         """Get the attributes of the classname from the storage"""
         attributes = storage.attributes()[classname]
         if attribute in attributes:
-            value = attributesattribute
+            value = attributes[attribute]
 
         setattr(storage.all()[key], attribute, value)
         storage.all()[key].save()
