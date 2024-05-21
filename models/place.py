@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """موديل كوميدي"""
-import models
-class Place(models.BaseModel):
+from models.base_model import BaseModel
+# import models
+class Place(BaseModel):
 	"""مكان الشقة او العميل"""
 	city_id = ""
 	user_id = ""
