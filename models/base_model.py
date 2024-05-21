@@ -2,6 +2,7 @@
 """BaseModel defines attributes and methods for all"""
 import uuid
 from datetime import datetime
+from models import storage
 class BaseModel:
     """Base class for inheritance by all other classes"""
     def __init__(self, *args, **kwargs):
