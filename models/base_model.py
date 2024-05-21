@@ -18,20 +18,20 @@ class BaseModel:
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
                 if key == "createds":
-                    self.__dict__["createds"] = datetime.strptime(
+                    self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 if key == "updateds":
-                    self.__dict__["updateds"] = datetime.strptime(
-                        kwargs["updateds"], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.__dict__["updated_at"] = datetime.strptime(
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
             self.id = str(uuid.uuid4())
 
         self.created_at = datetime.now()
-        print(f"time of createds \n{self.created_at}")
+        print(f"time of created_at \n{self.created_at}")
         self.update_at = datetime.now()
-        print(f"time updates \n{self.update_at}")
+        print(f"time update_at \n{self.update_at}")
 
     def save(self):
         """update instance attribute updateds"""
@@ -47,8 +47,8 @@ class BaseModel:
         """
         cop = self.__dict__.copy()
         cop["__class__"] = type(self).__name__
-        cop["created"] = datetime.isoformat(self.created_at)
-        cop["update"] = self.update_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        cop["create_at"] = datetime.isoformat(self.created_at)
+        cop["update_at"] = self.update_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         return cop
 
     def __str__(self):
