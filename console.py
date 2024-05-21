@@ -21,7 +21,7 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
-    def emptylines(self):
+    def emptyline(self):
         """empty lin + != anything"""
         pass
 
