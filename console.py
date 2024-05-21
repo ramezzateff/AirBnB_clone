@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 'Module for the entry  interpreter'
+import re
 import cmd
 import json
 import models
@@ -42,20 +43,6 @@ class HBNBCommand(cmd.Cmd):
             if word[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(word) < 2:
-                print("** instance id missing **")
-            else:
-                key = f"{word[0]}.{word[1]}"
-                if key not in storage.all():
-                    print("** no instance found **")
-                else:
-                    print(storage.all()[key])
-    def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id (save the change into the JSON file)"""
-        if arg is None or arg == "":
-            print("** class name missing **")
-        else:
-            word = arg.split(" ")
-            if word[0] not in storage.classes():
                 print("** class doesn't exist **")
             elif len(word) < 2:
                 print("** instance id missing **")
@@ -108,42 +95,49 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id
         by adding or updating attribute (save the change into the JSON file
         """
-        if not arg:
+        if arg == "" or arg is None:
             print("** class name missing **")
             return
-        args = arg.split()
-        classname, uid, attribute, value = args[0], args[1], args[2], args[3]
 
-        if classname not in storage.classes():
+        re_m = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
+        match = re.search(re_m, arg)
+        classname = match.group(1)
+        uid = match.group(2)
+        attribute = match.group(3)
+        value = match.group(4)
+        if not match:
+            print("** class name missing **")
+        elif classname not in storage.classes():
             print("** class doesn't exist **")
-            return
-
-        key = f"{classname}.{uid}"
-        if key not in storage.all():
-            print("** no instance found **")
-            return
-    
-        """If the attribute is empty, print an error message and return"""
-        if not attribute:
-            print("** attribute name missing **")
-            return
-
-        if not value:
-            print("** value missing **")
-            return
-
-        if '"' not in value:
-            value = float(value) if '.' in value else int(value)
+        elif uid is None:
+            print("** instance id missing **")
         else:
-            value = value.replace('"', '')
-
-        """Get the attributes of the classname from the storage"""
-        attributes = storage.attributes()[classname]
-        if attribute in attributes:
-            value = attributes[attribute]
-
-        setattr(storage.all()[key], attribute, value)
-        storage.all()[key].save()
+            key = "{}.{}".format(classname, uid)
+            if key not in storage.all():
+                print("** no instance found **")
+            elif not attribute:
+                print("** attribute name missing **")
+            elif not value:
+                print("** value missing **")
+            else:
+                cast = None
+                if not re.search('^".*"$', value):
+                    if '.' in value:
+                        cast = float
+                    else:
+                        cast = int
+                else:
+                    value = value.replace('"', '')
+                attributes = storage.attributes()[classname]
+                if attribute in attributes:
+                    value = attributes[attribute](value)
+                elif cast:
+                    try:
+                        value = cast(value)
+                    except ValueError:
+                        pass  # fine, stay a string then
+                setattr(storage.all()[key], attribute, value)
+                storage.all()[key].save()
 
 
     def do_count(self, arg):
