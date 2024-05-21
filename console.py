@@ -4,11 +4,11 @@ import cmd
 import json
 import models
 from models import storage
-from models.base_model import BaseModel
+# from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """its my interpreter"""
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
     
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(word) < 2:
             print("** instance id missing **")
         else:
-            key = f"{word-[0]}.{word[1]}"
+            key = f"{word[0]}.{word[1]}"
             if key not in storage.all():
                 print("** no instance found **")
             else:
@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
             elif len(word) < 2:
                 print("** instance id missing **")
             else:
-                key = f"{word[0]}{word[1]}"
+                key = f"{word[0]}.{word[1]}"
                 if key not in storage.all():
                     print("** no instance found **")
                 else:
@@ -136,4 +136,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
