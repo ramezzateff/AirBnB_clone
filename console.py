@@ -5,7 +5,7 @@ import cmd
 import json
 from models import storage
 import models
-# from models.base_model import BaseModel
+from models.base_model import BaseModel
 
 class HBNBCommand(cmd.Cmd):
     """its my interpreter"""
@@ -19,6 +19,7 @@ class HBNBCommand(cmd.Cmd):
         """for handle end line"""
         print()
         return True
+
     def emptylines(self):
         """empty lin + != anything"""
         pass
@@ -60,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         word = arg.split(" ")
         all_objects = storage.all().items()
         if arg != "" and word[0] in storage.classes():
-            inst_list = [str(obj) for key, obj in all_objects if type(obj).__name__ == word[0]]
+            inst_list = [str(obj) for key, obj in storage.all().items() if type(obj).__name__ == word[0]]
         else:
             """Create a list of string representations of all instances"""
             print("** class doesn't exist **")
@@ -135,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
                     try:
                         value = cast(value)
                     except ValueError:
-                        pass  # fine, stay a string then
+                        pass
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
 
@@ -151,5 +152,5 @@ class HBNBCommand(cmd.Cmd):
             cou = [key for key in storage.all() if key.startswith(word[0] + ".")]
             print(len(cou))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
