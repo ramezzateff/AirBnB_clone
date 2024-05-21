@@ -17,12 +17,11 @@ class BaseModel:
 
         if kwargs is not None and kwargs != {}:
             for key in kwargs:
-                if key == "createds":
+                if key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "updateds":
-                    self.__dict__["updated_at"] = datetime.strptime(
-                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
@@ -47,7 +46,7 @@ class BaseModel:
         """
         cop = self.__dict__.copy()
         cop["__class__"] = type(self).__name__
-        cop["create_at"] = datetime.isoformat(self.created_at)
+        cop["create_at"] = cop["created_at"].isoformat()
         cop["update_at"] = self.update_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
         return cop
 
