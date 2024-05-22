@@ -31,7 +31,7 @@ class BaseModel:
         self.created_at = datetime.now()
         """print(f"time of created_at \n{self.created_at}")"""
         self.updated_at = datetime.now()
-        """print(f"time updated_at \n{self.updated_at}")""""
+        """print(f"time updated_at \n{self.updated_at}")"""
         storage.new(self)
 
     def save(self):

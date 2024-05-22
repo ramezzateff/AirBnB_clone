@@ -14,6 +14,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
+        print("")
         return True
 
     def do_EOF(self, arg):
@@ -21,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
         print()
         return True
 
-    def emptyline(self):
+    def emptylines(self):
         """empty lin + != anything"""
         pass
 
@@ -54,15 +55,15 @@ class HBNBCommand(cmd.Cmd):
                     print(storage.all()[key])
 
     def do_all(self, arg):
-        """Prints all string representation of
-        all instances based or not on the class name"""
-        """Split the argument into word"""
+        """Prints all string representation of all instances based or
+        not on the class name Split the argument into word"""
         all_objects = storage.all().items()
         if arg != "":
             word = arg.split(" ")
             if word[0] in storage.classes():
-                inst_list = [str(obj) for key, obj in all_objects
-                             if type(obj).__name__ == word[0]]
+                inst_list = [
+                    str(obj) for key,
+                    obj in all_objects if type(obj).__name__ == word[0]]
             else:
                 """Create a list of string representations of all instances"""
                 print("** class doesn't exist **")
@@ -151,8 +152,9 @@ class HBNBCommand(cmd.Cmd):
         elif word[0] not in storage.classes():
             print("** class doesn't exist **")
         else:
-            cou = [key for key in storage.all()
-                   if key.startswith(word[0] + ".")]
+            cou = [
+                key for key in storage.all() if key.startswith(
+                    word[0] + ".")]
             print(len(cou))
 
     def do_destroy(self, arg):
