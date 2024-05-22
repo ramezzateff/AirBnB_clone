@@ -5,10 +5,11 @@ from models.base_model import BaseModel
 import models
 import os
 import json
+import datetime
 
 
 class TestFileStorage(unittest.TestCase):
-	"""let's gooooooooooooooooo"""
+    """let's gooooooooooooooooo"""
     def test_FileStorage_init(self):
         filepath = models.storage._FileStorage__file_path
         _objs = models.storage._FileStorage__objects
@@ -57,7 +58,7 @@ class TestFileStorage(unittest.TestCase):
                          models.storage.all()[key].to_dict())
 
 
-	def test_attributes(self):
+    def test_attributes(self):
         """Test the attributes method"""
         expected_attr = {
             "BaseModel":
@@ -97,8 +98,9 @@ class TestFileStorage(unittest.TestCase):
         # Call the attributes function
         real_attr = BaseModel.attributes()
         self.assertEqual(expected_attr, real_attr)
-	
+    
         """file"""
+        filepath = models.storage._FileStorage__file_path
         if os.path.exists(filepath):
             os.remove(filepath)
         self.assertFalse(os.path.exists(filepath))
