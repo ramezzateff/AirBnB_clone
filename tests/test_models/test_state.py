@@ -5,7 +5,6 @@ import unittest
 from models.state import State
 from datetime import datetime
 
-
 class TestState(unittest.TestCase):
  
     def test_state(self):

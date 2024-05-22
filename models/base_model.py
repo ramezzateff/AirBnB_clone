@@ -3,6 +3,7 @@
 import uuid
 from datetime import datetime
 from models import storage
+
 class BaseModel:
     """Base class for inheritance by all other classes"""
     def __init__(self, *args, **kwargs):
@@ -19,7 +20,8 @@ class BaseModel:
                     self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 if key == "updated_at":
-                    self.__dict__["updated_at"] = datetime.strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                    self.__dict__["updated_at"] = datetime.strptime(
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = kwargs[key]
         else:

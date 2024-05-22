@@ -5,7 +5,6 @@ import unittest
 from models.city import City
 from datetime import datetime
 
-
 class TestCity(unittest.TestCase):
 
     def test_city(self):

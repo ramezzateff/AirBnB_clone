@@ -12,7 +12,6 @@ import time
 import unittest
 import uuid
 
-
 class TestBaseModel(unittest.TestCase):
 
     """Test Cases for the BaseModel class."""

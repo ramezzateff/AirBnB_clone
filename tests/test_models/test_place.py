@@ -5,7 +5,6 @@ import unittest
 from models.place import Place
 from datetime import datetime
 
-
 class TestPlace(unittest.TestCase):
 
     def test_place(self):

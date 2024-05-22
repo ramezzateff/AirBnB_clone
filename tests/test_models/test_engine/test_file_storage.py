@@ -6,9 +6,8 @@ import models
 import os
 import json
 
-
 class TestFileStorage(unittest.TestCase):
-	"""let's gooooooooooooooooo"""
+    """let's gooooooooooooooooo"""
     def test_FileStorage_init(self):
         filepath = models.storage._FileStorage__file_path
         _objs = models.storage._FileStorage__objects

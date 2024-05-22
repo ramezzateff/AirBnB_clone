@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """its my interpreter"""
     prompt = "(hbnb) "
-    
+
     def do_quit(self, arg):
         """Quit command to exit the program"""
         return True
@@ -93,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
                         value = attributes[attribute](value)
                     setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
-                
+
     def do_update(self, arg):
         """
         Updates an instance based on the class name and id

@@ -5,7 +5,6 @@ import unittest
 from models.amenity import Amenity
 from datetime import datetime
 
-
 class TestAmenity(unittest.TestCase):
 
     def test_amenity(self):

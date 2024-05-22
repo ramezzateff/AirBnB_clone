@@ -5,7 +5,6 @@ import unittest
 from models.user import User
 from datetime import datetime
 
-
 class TestUser(unittest.TestCase):
     
     def test_user(self):
