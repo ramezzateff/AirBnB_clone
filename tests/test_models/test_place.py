@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-""" let's test place class """
-"""sixth class and lasssssssssssssssssssssst"""
+""" let's test place class
+sixth class and lasssssssssssssssssssssst"""
 import unittest
 from models.place import Place
 from datetime import datetime
+
 
 class TestPlace(unittest.TestCase):
 

@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """let's test amenity class"""
-"""fifth class"""
 import unittest
 from models.amenity import Amenity
 from datetime import datetime
+
 
 class TestAmenity(unittest.TestCase):
 

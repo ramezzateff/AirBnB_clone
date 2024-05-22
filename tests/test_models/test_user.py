@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""First Class"""
-"""let's test user class"""
+"""First Class let's test user class"""
 import unittest
 from models.user import User
 from datetime import datetime
 
+
 class TestUser(unittest.TestCase):
-    
+    """users tester"""
     def test_user(self):
         """let's check attributes of class user"""
         usr = User()

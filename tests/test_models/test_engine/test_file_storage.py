@@ -6,6 +6,7 @@ import models
 import os
 import json
 
+
 class TestFileStorage(unittest.TestCase):
     """let's gooooooooooooooooo"""
     def test_FileStorage_init(self):
@@ -54,6 +55,47 @@ class TestFileStorage(unittest.TestCase):
             saved_data = json.load(file)
         self.assertEqual(saved_data[key],
                          models.storage.all()[key].to_dict())
+
+    def test_attributes(self):
+        """Test the attributes method"""
+        expected_attr = {
+            "BaseModel":
+                {"id": str,
+                 "created_at": datetime.datetime,
+                 "updated_at": datetime.datetime},
+            "User":
+                {"email": str,
+                 "password": str,
+                 "first_name": str,
+                 "last_name": str},
+            "State":
+                {"name": str},
+            "City":
+                {"state_id": str,
+                 "name": str},
+            "Amenity":
+                {"name": str},
+            "Place":
+                {"city_id": str,
+                 "user_id": str,
+                 "name": str,
+                 "description": str,
+                 "number_rooms": int,
+                 "number_bathrooms": int,
+                 "max_guest": int,
+                 "price_by_night": int,
+                 "latitude": float,
+                 "longitude": float,
+                 "amenity_ids": list},
+            "Review":
+                {"place_id": str,
+                 "user_id": str,
+                 "text": str}
+        }
+
+        # Call the attributes function
+        real_attr = BaseModel.attributes()
+        self.assertEqual(expected_attr, real_attr)
 
         """file"""
         if os.path.exists(filepath):

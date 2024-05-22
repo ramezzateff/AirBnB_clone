@@ -1,8 +1,9 @@
 #!/usr/bin/python3
+"""third class"""
 import unittest
 from models.review import Review
 from datetime import datetime
-"""third class"""
+
 
 class TestReview(unittest.TestCase):
     """let's test review class"""
@@ -24,5 +25,6 @@ class TestReview(unittest.TestCase):
         self.assertTrue(hasattr(rv, "text"))
         self.assertIsInstance(rv.text, str)
 
-    if __name__ == "__main__":
-        unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()

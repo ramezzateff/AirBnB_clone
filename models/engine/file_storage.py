@@ -4,6 +4,7 @@ import datetime
 import os
 import json
 
+
 class FileStorage:
     """storage for data"""
     __file_path = "file.json"
@@ -14,15 +15,18 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """Assigns the object with key '<object class name>.id' in the '__objects' dictionary"""
+        """Assigns the object with key '<object class name>.id'
+        in the '__objects' dictionary"""
         key = f"{type(obj).__name__}.{obj.id}"
         """type(obj).__name__, obj.id"""
         FileStorage.__objects[key] = obj
 
     def save(self):
-        """Converts '__objects' into a JSON format and saves it to the file specified by '__file_path'"""
+        """Converts '__objects' into a JSON format and saves
+        it to the file specified by '__file_path'"""
         with open(FileStorage.__file_path, "w", encoding="utf-8") as pato:
-            damo = {key: value.to_dict() for key, value in FileStorage.__objects.items()}
+            damo = {key: value.to_dict()
+                    for key, value in FileStorage.__objects.items()}
             json.dump(damo, pato)
 
     def classes(self):

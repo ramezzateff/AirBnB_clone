@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-"""let's test class city"""
-"""forth class"""
+"""let's test class city forth class"""
 import unittest
 from models.city import City
 from datetime import datetime
+
 
 class TestCity(unittest.TestCase):
 

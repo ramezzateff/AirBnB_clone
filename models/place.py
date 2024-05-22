@@ -2,6 +2,7 @@
 """موديل كوميدي"""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """مكان الشقة او العميل"""
     city_id = ""
