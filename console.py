@@ -7,6 +7,7 @@ from models import storage
 import models
 from models.base_model import BaseModel
 
+
 class HBNBCommand(cmd.Cmd):
     """its my interpreter"""
     prompt = "(hbnb) "
@@ -52,15 +53,16 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     print(storage.all()[key])
 
-
     def do_all(self, arg):
-        """Prints all string representation of all instances based or not on the class name"""
+        """Prints all string representation of
+        all instances based or not on the class name"""
         """Split the argument into word"""
         all_objects = storage.all().items()
         if arg != "":
             word = arg.split(" ")
             if word[0] in storage.classes():
-                inst_list = [str(obj) for key, obj in all_objects if type(obj).__name__ == word[0]]
+                inst_list = [str(obj) for key, obj in all_objects
+                             if type(obj).__name__ == word[0]]
             else:
                 """Create a list of string representations of all instances"""
                 print("** class doesn't exist **")
@@ -69,8 +71,6 @@ class HBNBCommand(cmd.Cmd):
             inst_list = [str(obj) for key, obj in all_objects]
 
         print(inst_list)
-
-
 
     def update_dict(self, classname, uid, s_dict):
         """Helper update"""
@@ -143,7 +143,6 @@ class HBNBCommand(cmd.Cmd):
                 setattr(storage.all()[key], attribute, value)
                 storage.all()[key].save()
 
-
     def do_count(self, arg):
         """times  instances"""
         word = arg.split(" ")
@@ -152,7 +151,8 @@ class HBNBCommand(cmd.Cmd):
         elif word[0] not in storage.classes():
             print("** class doesn't exist **")
         else:
-            cou = [key for key in storage.all() if key.startswith(word[0] + ".")]
+            cou = [key for key in storage.all()
+                   if key.startswith(word[0] + ".")]
             print(len(cou))
 
     def do_destroy(self, arg):
@@ -172,6 +172,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     del storage.all()[key]
                     storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
