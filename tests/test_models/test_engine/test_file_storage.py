@@ -7,7 +7,6 @@ import os
 import json
 import datetime
 
-
 class TestFileStorage(unittest.TestCase):
     """let's gooooooooooooooooo"""
 
@@ -105,7 +104,6 @@ class TestFileStorage(unittest.TestCase):
             os.remove(filepath)
         self.assertFalse(os.path.exists(filepath))
         models.storage.reload()
-
 
 if __name__ == '__main__':
     unittest.main()

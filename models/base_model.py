@@ -20,19 +20,16 @@ class BaseModel:
                 if key == "created_at":
                     self.__dict__["created_at"] = datetime.strptime(
                         kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "updated_at":
+                elif key == "updated_at":
                     self.__dict__["updated_at"] = datetime.strptime(
                         kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 else:
                     self.__dict__[key] = kwargs[key]
         else:
             self.id = str(uuid.uuid4())
-
-        self.created_at = datetime.now()
-        """print(f"time of created_at \n{self.created_at}")"""
-        self.updated_at = datetime.now()
-        """print(f"time updated_at \n{self.updated_at}")"""
-        storage.new(self)
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            storage.new(self)
 
     def save(self):
         """update instance attribute updateds"""
@@ -48,7 +45,7 @@ class BaseModel:
         cop = self.__dict__.copy()
         cop["__class__"] = type(self).__name__
         cop["created_at"] = cop["created_at"].isoformat()
-        cop["updated_at"] = self.updated_at.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        cop["updated_at"] = cop["updated_at"].isoformat()
         return cop
 
     def __str__(self):
