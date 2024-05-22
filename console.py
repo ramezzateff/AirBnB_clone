@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'Module for the entry  interpreter'
+"""Module for the entry  interpreter"""
 import re
 import cmd
 import json
